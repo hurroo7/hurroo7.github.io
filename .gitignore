@@ -1,2 +1,5 @@
 public/
 __pycache__/
+.hugo_build.lock
+resources/
+live-preview.png

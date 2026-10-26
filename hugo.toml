@@ -1,0 +1,49 @@
+baseURL = 'https://hurroo7.github.io/'
+locale = 'zh-CN'
+defaultContentLanguage = 'zh-cn'
+title = 'Hurroo'
+hasCJKLanguage = true
+timeZone = 'Asia/Shanghai'
+disableKinds = ['taxonomy', 'term']
+[params]
+  description = '记录生活、学习与创造'
+
+[[menus.main]]
+  name = '关于'
+  url = '/about/'
+  weight = 1
+  [menus.main.params]
+    english = 'About'
+    roman = 'I'
+
+[[menus.main]]
+  name = '文章'
+  url = '/posts/'
+  weight = 2
+  [menus.main.params]
+    english = 'Writing'
+    roman = 'II'
+
+[[menus.main]]
+  name = '项目'
+  url = '/projects/'
+  weight = 3
+  [menus.main.params]
+    english = 'Projects'
+    roman = 'III'
+
+[[menus.main]]
+  name = '随记'
+  url = '/notes/'
+  weight = 4
+  [menus.main.params]
+    english = 'Notes'
+    roman = 'IV'
+
+[[menus.main]]
+  name = '归档'
+  url = '/archives/'
+  weight = 5
+  [menus.main.params]
+    english = 'Archive'
+    roman = 'V'

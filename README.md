@@ -1,37 +1,26 @@
 # Hurroo 的个人博客
 
-复古书籍风格的静态博客。本地第一版使用 Python 标准库生成网页，无需安装 Hugo 或前端依赖。文章原稿以 Markdown 保存，后续可以迁移到 Hugo 或 WordPress。
+使用 **Hugo 0.168.0 + GitHub Pages** 构建，自定义复古书籍风格，无需外部主题或 Python。
+
+正式网址：https://hurroo7.github.io/
 
 ## 本地预览
 
-```sh
-python3 scripts/build.py
-python3 -m http.server 8000 --directory public
-```
-
-打开 http://localhost:8000。修改内容后重新执行构建，再刷新页面。
+从 https://gohugo.io/installation/ 安装 Hugo，在项目目录运行 `hugo server -D`，打开终端显示的地址（默认 http://localhost:1313/）。保存内容后预览自动更新。
 
 ## 写文章
 
-在 `content/posts/` 新建 UTF-8 的 `.md` 文件，文件名如 `2026-10-27-my-day.md`：
+运行 `hugo new content posts/my-new-post.md`，在 `content/posts/` 编辑生成的 Markdown。填入标题、日期、分类和简介，完成后把 `draft: true` 改为 `draft: false`。提交到 GitHub main 分支后自动发布。
 
-```md
----
-title: 我的一天
-date: 2026-10-27
-category: 随记
----
-正文段落。
+支持 Hugo 内置 Markdown：标题、列表、链接、图片、引用、表格和代码块。现有文章为排版示例，可以修改或删除。
 
-## 小标题
+## 修改网站
 
-另一个段落。
-```
+- 网站介绍和目录：`hugo.toml`
+- 关于与项目：`content/about.md`、`content/projects.md`
+- 页面模板：`layouts/`
+- 纸张背景与配色：`static/style.css`
+- 夜间模式：`static/site.js`
+- 自动发布：`.github/workflows/pages.yml`
 
-当前轻量生成器支持段落和二级标题，其他 Markdown 语法暂未支持。示例文章用于预览，请在正式发布前修改或删除。首页、关于等内容在 `scripts/build.py` 中修改。字体在线加载；离线时使用系统衬线字体。
-
-## 发布到 GitHub Pages
-
-建议使用用户主页仓库 `hurroo7.github.io`，工作流按根域名路径配置。把源码上传到该仓库的 `main` 分支，在仓库 Settings → Pages 将 Source 设为 GitHub Actions。之后推送会自动构建和发布。项目子路径仓库需要先调整网址路径。
-
-网站尚未上传至 GitHub，也没有对外发布。
+运行 `hugo --gc --minify` 生成 `public/`，不提交生成文件。文章原地址和 🍁 图标保留。Google Fonts 不可用时使用系统衬线字体。
