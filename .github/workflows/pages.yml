@@ -1,4 +1,4 @@
-name: Publish blog to GitHub Pages
+name: Publish Hugo blog to GitHub Pages
 on:
   push:
     branches: [main]
@@ -18,10 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python scripts/build.py
+      - name: Install Hugo 0.168.0
+        run: |
+          curl --fail --location --retry 3 https://github.com/gohugoio/hugo/releases/download/v0.168.0/hugo_0.168.0_linux-amd64.tar.gz -o "$RUNNER_TEMP/hugo_0.168.0_linux-amd64.tar.gz"
+          curl --fail --location --retry 3 https://github.com/gohugoio/hugo/releases/download/v0.168.0/hugo_0.168.0_checksums.txt -o "$RUNNER_TEMP/checksums.txt"
+          cd "$RUNNER_TEMP"
+          sha256sum --check --ignore-missing checksums.txt
+          tar -xzf hugo_0.168.0_linux-amd64.tar.gz hugo
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Build with Hugo
+        run: hugo --gc --minify
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
