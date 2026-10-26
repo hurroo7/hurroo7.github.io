@@ -1,0 +1,1 @@
+{{ define "main" }}{{ range .RegularPages.ByDate.Reverse }}<a class="entry" href="{{ .RelPermalink }}"><span class="meta">{{ .Date.Format "2006-01-02" }} · {{ .Params.category }}</span><h2>{{ .Title }} ↗</h2><p>{{ .Description | default (.Summary | plainify) }}</p></a>{{ else }}<p class="empty">这里的故事，正在酝酿。</p>{{ end }}{{ end }}
