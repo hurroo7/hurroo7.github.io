@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article class="about-editorial" aria-labelledby="about-title">
-  <header class="about-heading"><h1 id="about-title">{{ .Title }}</h1></header>
+  <header class="about-heading"><h1 id="about-title">{{ .Title }}</h1><button class="academy-instrument" aria-label="让观星窗的星光流动" type="button">{{ partial "academy-art.html" "window" }}</button><span class="about-signature" aria-hidden="true">Hurroo</span><span class="about-personal-seal" aria-hidden="true">H</span></header>
   <div class="about-copy">{{ .Content }}</div>
 </article>
 {{ end }}

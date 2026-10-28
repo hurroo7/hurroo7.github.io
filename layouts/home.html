@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="atlas-home">
   <div class="atlas-grain" aria-hidden="true"></div>
-  <header class="atlas-title"><h1>HURROO<span aria-hidden="true">✳</span></h1><p>be my self</p></header>
+  <header class="atlas-title"><h1 aria-label="HURROO"><span class="name-line">HUR</span><span class="name-line">ROO</span><span class="name-star" aria-hidden="true">✳</span></h1><p>be my self</p></header>
   <section class="atlas-field" aria-label="个人网站星图">
     <div class="atlas-instrument">
       <svg class="celestial-chart" viewBox="0 0 800 800" aria-hidden="true">
@@ -11,7 +11,7 @@
           <clipPath id="planet-clip"><circle cx="400" cy="400" r="112"/></clipPath>
         </defs>
         <circle class="chart-grid" cx="400" cy="400" r="345" fill="url(#chart-grid)"/>
-        <g class="chart-outer"><circle cx="400" cy="400" r="348"/><circle cx="400" cy="400" r="337"/><circle class="chart-ticks" cx="400" cy="400" r="342"/><circle cx="400" cy="400" r="285" stroke-dasharray="1 7"/><path d="M400 35V765M35 400H765M142 142 658 658M142 658 658 142"/>
+        <g class="chart-engraved"><circle cx="400" cy="400" r="305"/><circle cx="400" cy="400" r="362"/><path d="M110 505q290 240 580 0M125 540q275 210 550 0M275 100q-155 300 0 600m250-600q155 300 0 600"/><path d="m400 15 9 24-9 24-9-24Zm385 385-24 9-24-9 24-9ZM400 785l-9-24 9-24 9 24ZM15 400l24-9 24 9-24 9Z" fill="currentColor"/></g><g class="chart-outer"><circle cx="400" cy="400" r="348"/><circle cx="400" cy="400" r="337"/><circle class="chart-ticks" cx="400" cy="400" r="342"/><circle cx="400" cy="400" r="285" stroke-dasharray="1 7"/><path d="M400 35V765M35 400H765M142 142 658 658M142 658 658 142"/>
         <path d="m400 43-6 15h12zM757 400l-15-6v12zM400 757l6-15h-12zM43 400l15 6v-12z" fill="currentColor"/>
         </g>
         <g class="chart-rings"><ellipse cx="400" cy="400" rx="315" ry="128" transform="rotate(-35 400 400)"/><ellipse cx="400" cy="400" rx="315" ry="128" transform="rotate(48 400 400)"/><ellipse cx="400" cy="400" rx="315" ry="128" transform="rotate(8 400 400)"/></g>
@@ -26,7 +26,7 @@
         </g>
       </svg>
       <button class="atlas-core" type="button" aria-label="旋转星盘：拖动或使用方向键，点击重排，Home 键复位" aria-pressed="false"><span aria-hidden="true">✧</span></button>
-      <nav class="atlas-nav" aria-label="网站目录">{{ range .Site.Menus.main }}<a class="atlas-node" href="{{ .URL | relURL }}" data-chapter="{{ .Weight }}"><span class="node-marker" aria-hidden="true"></span><span class="node-copy"><span class="node-index">{{ .Params.roman }}</span><span class="node-name">{{ .Name }}</span><span class="node-en">{{ .Params.english }}</span></span></a>{{ end }}</nav>
+      <nav class="atlas-nav" aria-label="网站目录">{{ range .Site.Menus.main }}<a class="atlas-node" href="{{ .URL | relURL }}" data-chapter="{{ .Weight }}"><span class="node-marker" aria-hidden="true">{{ partial "chapter-symbol.html" .Name }}</span><span class="node-copy"><span class="node-index">{{ .Params.roman }}</span><span class="node-name">{{ .Name }}</span><span class="node-en">{{ .Params.english }}</span></span></a>{{ end }}</nav>
     </div>
   </section>
   <footer class="atlas-footer"><a href="https://github.com/hurroo7" aria-label="访问 Hurroo 的 GitHub">GitHub ↗</a><button class="theme" aria-label="切换深色模式" aria-pressed="false">◐</button></footer>
