@@ -1,0 +1,45 @@
+/* Shared material and instruments for the academy's inner pages. */
+html:has(.about-page),html:has(.travel-prologue){--paper:#eae6dc;--ink:#343c3a;--muted:#686e65;--accent:#8a6942;--line:#b5ad98;--brass:#93764b}
+html.dark:has(.about-page),html.dark:has(.travel-prologue){--paper:#1d292d;--ink:#e3dfd1;--muted:#aab4ad;--accent:#d1b47b;--line:#556562;--brass:#b7a278}
+body:has(.about-page),body:has(.travel-prologue){background:var(--paper)}
+.about-page,.travel-page:has(.travel-prologue){background:transparent;isolation:isolate;position:relative}
+.about-page::before,.travel-page:has(.travel-prologue)::before{content:"";pointer-events:none;position:absolute;inset:0;z-index:-1;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath filter='url(%23n)' opacity='.5' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}
+.academy-instrument{display:block;padding:0;border:0;background:none;color:var(--brass);cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative;isolation:isolate}
+.academy-instrument:focus-visible{outline:1px solid var(--accent);outline-offset:8px;border-radius:45% 45% 0 0}
+.academy-instrument svg{display:block;width:100%;height:auto;overflow:visible;transition:filter .6s,transform .6s}
+.academy-instrument:hover svg{filter:drop-shadow(0 0 14px #c8b88435);transform:translateY(-4px)}
+.about-editorial{grid-template-columns:38% 1fr;gap:8%;padding-top:92px}
+.about-heading{top:35px}.about-heading h1{font-size:clamp(76px,8vw,104px);margin:0 0 -10px;position:relative;z-index:1}
+.about-heading .academy-instrument{width:calc(100% + 28px);max-width:400px;margin:5px 0 0 -28px}
+.about-copy{padding-top:12px}.about-copy p:first-child{font-size:27px;line-height:1.85}
+.about-copy p:first-child{border-left:1px solid var(--brass);padding-left:24px}
+.academy-orbit{animation:academy-orbit 75s linear infinite}.academy-stars{animation:academy-glimmer 6s ease-in-out infinite alternate}
+.travel-prologue{display:grid;grid-template-columns:1fr 300px;gap:45px;align-items:center;padding:65px 0 48px}
+.travel-prologue .travel-header{margin:0 0 32px}.travel-prologue .travel-header h1{font-size:clamp(70px,7.5vw,102px)}
+.travel-prologue .travel-intro{margin:0;font-size:18px;line-height:2.1;max-width:610px}
+.travel-wayfinder{width:100%;max-width:300px;justify-self:end}.travel-wayfinder[hidden]{display:none}.travel-wayfinder span{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:13px;letter-spacing:.15em;color:var(--ink)}
+.compass-orbit{animation:academy-orbit 90s linear infinite}.compass-needle{animation:compass-drift 12s ease-in-out infinite}.travel-wayfinder:hover .compass-needle{animation:compass-drift 2s ease-in-out infinite}
+.ticket-sigil{width:55px;height:55px;stroke:currentColor;stroke-width:1;opacity:.65;margin-bottom:22px;flex-shrink:0;transform:rotate(-9deg)}
+.ticket-copy{position:relative}.ticket-copy h2{margin-top:0}.ticket-sleeve:nth-child(even) .ticket-sigil{transform:rotate(8deg)}
+.travel-tickets{position:relative}.travel-tickets::before{content:"";position:absolute;inset:-26px 12% -30px 7%;border:1px solid var(--brass);border-radius:50%;transform:rotate(-14deg);z-index:-1;opacity:.16;pointer-events:none}
+.academy-spark{position:fixed;pointer-events:none;width:3px;height:3px;border-radius:50%;background:#d5bb80;box-shadow:0 0 8px #d5bb80;z-index:30}
+/* Inked travel warrants, with architectural blind stamps and brass edging. */
+.travel-page:has(.travel-prologue) .trip-ticket{--ticket-color:#553b42;grid-template-columns:66% 34%}
+.travel-page:has(.travel-prologue) .ticket-slate{--ticket-color:#304e4c}
+.travel-page:has(.travel-prologue) .ticket-copy{padding:42px 38px;isolation:isolate;border-left:1px dashed #d6c49399;background:radial-gradient(ellipse at 100% 0,#c6a57418,transparent 65%),linear-gradient(115deg,#0000000a,transparent 25%,#00000019)}
+.travel-page:has(.travel-prologue) .ticket-copy::before,.travel-page:has(.travel-prologue) .ticket-copy::after{left:-11px}
+.travel-page:has(.travel-prologue) .ticket-sigil{position:absolute;right:-30px;bottom:-44px;width:225px;height:225px;margin:0;opacity:.15;color:#dfcc9f;z-index:-1;stroke-width:.7;filter:drop-shadow(0 1px #0009);transition:transform 1s,opacity 1s}
+.travel-page:has(.travel-prologue) .ticket-copy h2{font-family:'Noto Serif SC','Songti SC',serif;font-weight:400;font-size:55px;letter-spacing:.12em;margin:0 0 30px;color:#eee3cc;text-shadow:0 1px 1px #0004}
+.travel-page:has(.travel-prologue) .ticket-copy h2::before{content:"";display:block;width:15px;height:15px;margin-bottom:27px;background:#c2a879;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px #dcc59455)}
+.travel-page:has(.travel-prologue) .ticket-dates{font-size:14px;font-weight:400;letter-spacing:.05em;color:#d7c9ad;gap:5px}
+.travel-page:has(.travel-prologue) .trip-ticket::before{border-color:#d7c39480;box-shadow:inset 0 0 0 3px #0000000a,inset 0 0 0 4px #d7c39420;z-index:3;pointer-events:none}
+.travel-page:has(.travel-prologue) .trip-ticket:hover .ticket-sigil{transform:rotate(0deg) scale(1.04);opacity:.25}
+@media(max-width:900px){.travel-page:has(.travel-prologue) .ticket-copy{padding:28px}.travel-page:has(.travel-prologue) .ticket-copy h2{font-size:43px;margin-bottom:24px}.travel-page:has(.travel-prologue) .ticket-copy h2::before{margin-bottom:19px}.travel-page:has(.travel-prologue) .ticket-sigil{width:180px;height:180px}}
+@media(max-width:650px){.travel-page:has(.travel-prologue) .trip-ticket{grid-template-columns:58% 42%}.travel-page:has(.travel-prologue) .ticket-copy{padding:19px 18px}.travel-page:has(.travel-prologue) .ticket-copy h2{font-size:31px;margin-bottom:18px;letter-spacing:.08em}.travel-page:has(.travel-prologue) .ticket-copy h2::before{width:11px;height:11px;margin-bottom:16px}.travel-page:has(.travel-prologue) .ticket-dates{font-size:11px;letter-spacing:.015em;gap:1px}.travel-page:has(.travel-prologue) .ticket-sigil{width:140px;height:140px;right:-26px;bottom:-26px}}
+@keyframes academy-orbit{to{transform:rotate(360deg)}}
+@keyframes academy-glimmer{from{opacity:.45}to{opacity:1}}
+@keyframes compass-drift{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+@media(min-width:1500px){.about-editorial{padding-top:100px}}
+@media(max-width:900px){.about-editorial{grid-template-columns:35% 1fr;gap:7%;padding-top:70px}.about-copy p:first-child{font-size:24px}.travel-prologue{grid-template-columns:1fr 220px;gap:20px}.travel-prologue .travel-intro{font-size:16px}.ticket-sigil{width:42px;height:42px;margin-bottom:14px}}
+@media(max-width:650px){.about-editorial{grid-template-columns:1fr;gap:27px;padding-top:52px}.about-heading{display:grid;grid-template-columns:1fr 57%;align-items:center;position:static}.about-heading h1{font-size:66px;margin:0}.about-heading .academy-instrument{width:100%;margin:0;justify-self:end}.about-copy{padding-top:0}.about-copy p:first-child{font-size:22px}.travel-prologue{padding:42px 0 36px;grid-template-columns:1fr 115px;gap:10px}.travel-prologue .travel-header{margin-bottom:20px}.travel-prologue .travel-header h1{font-size:61px}.travel-prologue .travel-intro{font-size:14px;line-height:1.9}.travel-prologue .travel-intro br{display:none}.travel-wayfinder{align-self:start;margin-top:13px}.travel-wayfinder span{bottom:-6px;font-size:11px}.ticket-sigil{width:32px;height:32px;margin-bottom:9px}.ticket-copy{padding-top:15px;padding-bottom:15px}.ticket-copy h2{font-size:28px;margin-bottom:12px}.travel-tickets::before{inset:-12px 8% -12px 5%}}
+@media(prefers-reduced-motion:reduce){.academy-orbit,.academy-stars,.compass-orbit,.compass-needle,.travel-wayfinder:hover .compass-needle{animation:none}.academy-instrument svg{transition:none}.academy-instrument:hover svg{transform:none}.academy-spark{display:none}}
