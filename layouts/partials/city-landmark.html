@@ -1,0 +1,6 @@
+{{/* Schematic city identifiers, not claims about visited sights. Sources: docs/travel-content.md. */}}
+{{ if eq . "NANJING" }}
+<path d="M6 53h52M9 53V25h5v-6h7v6h7v-6h8v6h7v-6h7v6h5v28M11 32h42M11 36h42M26 53V43a6 6 0 0 1 12 0v10M14 41h5m26 0h5M14 47h5m26 0h5M23 29v3m18-3v3M18 32v4m14-4v4m14-4v4"/>
+{{ else if eq . "BEIJING" }}
+<path d="M32 6v5M29 11h6M32 11q-4 8-12 10 12 3 24 0-8-2-12-10ZM22 24v4m20-4v4M20 28q-4 4-9 5 21 5 42 0-5-1-9-5M17 36v5m30-5v5M13 41q-4 4-8 5 27 5 54 0-4-1-8-5M13 49v5m8-5v5m22-5v5m8-5v5M28 54v-5h8v5M10 55h44M7 58h50M4 61h56"/>
+{{ else }}<circle cx="32" cy="32" r="9"/><path d="M32 13v10m0 18v10M13 32h10m18 0h10"/>{{ end }}

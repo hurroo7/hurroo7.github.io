@@ -1,0 +1,4 @@
+<a class="trip-ticket ticket-{{ .Params.ticket_tone | default "ochre" }}" href="{{ .RelPermalink }}" aria-label="{{ .Title }}{{ if .Params.start }}，{{ .Params.start }} 至 {{ .Params.end }}{{ end }}，查看旅行记录">
+  <div class="ticket-photo">{{ if .Params.cover }}<img src="{{ .Params.cover | relURL }}" alt="{{ .Params.cover_alt | default "旅行照片" }}">{{ else }}<div class="photo-placeholder" role="img" aria-label="{{ .Title }}旅行照片预留位置"></div>{{ end }}</div>
+  <div class="ticket-copy"><svg class="ticket-sigil" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="27"/><circle cx="32" cy="32" r="23" stroke-dasharray="1 4"/>{{ partial "city-landmark.html" .Params.city_en }}</svg><h2>{{ .Title }}</h2>{{ if .Params.start }}<p class="ticket-dates"><time>{{ .Params.start }}</time><span>—</span><time>{{ .Params.end }}</time></p>{{ end }}</div>
+</a>
