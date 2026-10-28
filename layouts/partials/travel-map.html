@@ -1,13 +1,13 @@
 <dialog class="travel-map-dialog" aria-labelledby="map-title">
   <div class="map-top"><h2 id="map-title">旅行地图</h2><button type="button" class="map-close" aria-label="关闭旅行地图">×</button></div>
-  <div class="map-actions"><button type="button" data-map-view="world" aria-pressed="true">世界</button><button type="button" data-map-view="nanjing" aria-pressed="false">定位南京</button></div>
-  <div class="map-canvas"><svg class="travel-map-svg" viewBox="0 0 1000 500" aria-labelledby="map-svg-title" role="img"><title id="map-svg-title">世界旅行足迹地图，南京位于中国东部。选择南京可打开旅行记录。</title>
+  <div class="map-actions"><button type="button" data-map-view="world" aria-pressed="true">世界</button><button type="button" data-map-view="asia" aria-pressed="false">东亚</button></div>
+  <div class="map-canvas"><svg class="travel-map-svg" viewBox="0 0 1000 500" aria-labelledby="map-svg-title" role="img"><title id="map-svg-title">世界旅行足迹地图，包含南京与北京。选择城市可打开旅行记录。</title>
   <defs><pattern id="map-grid" width="83.333" height="83.333" patternUnits="userSpaceOnUse"><path d="M83.333 0H0V83.333"/></pattern></defs>
   <rect class="map-water" x="0" y="0" width="1000" height="500"/><rect class="map-grid" x="0" y="0" width="1000" height="500" fill="url(#map-grid)"/>
   {{ partial "travel-land.html" . }}
   {{ range where .Site.RegularPages "Layout" "journey" }}{{ $x := mul (div (add (float .Params.longitude) 180.0) 360.0) 1000.0 }}{{ $y := mul (div (sub 90.0 (float .Params.latitude)) 180.0) 500.0 }}
-  <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}，{{ .Params.start }} 至 {{ .Params.end }}，打开游记"><g class="map-place" transform="translate({{ $x }} {{ $y }})"><circle class="map-hit" r="22"/><circle class="map-halo" r="14"/><circle class="map-dot" r="4"/><text x="-12" y="-22" text-anchor="end">{{ .Title }}</text></g></a>
+  <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}，打开游记"><g class="map-place" transform="translate({{ $x }} {{ $y }})"><circle class="map-hit" r="22"/><circle class="map-halo" r="14"/><circle class="map-dot" r="4"/><text x="-12" y="-22" text-anchor="end">{{ .Title }}</text></g></a>
   {{ end }}</svg></div>
-  {{ range (where .Site.RegularPages "Layout" "journey").ByDate.Reverse }}<a class="map-record" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><span>{{ .Params.start }} — {{ .Params.end }}</span><span aria-hidden="true">↗</span></a>{{ end }}
+  {{ range (where .Site.RegularPages "Layout" "journey").ByDate.Reverse }}<a class="map-record" href="{{ .RelPermalink }}"><span>{{ .Title }}</span>{{ if .Params.start }}<span>{{ .Params.start }} — {{ .Params.end }}</span>{{ end }}</a>{{ end }}
   <a class="map-credit" href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">陆地轮廓：Natural Earth</a>
 </dialog>
