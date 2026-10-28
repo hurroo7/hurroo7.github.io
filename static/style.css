@@ -90,3 +90,17 @@ html.spell-lit .grimoire .contents .label{ text-shadow:0 0 15px #e6c37944 }
 @keyframes float-rune{50%{transform:translateY(-18px) rotate(20deg);opacity:.55}}
 @media(max-width:480px){.grimoire{padding:34px 30px 22px}.grimoire h1.brand{font-size:clamp(48px,15vw,70px);margin-top:20px}.magic-kicker{font-size:8px;letter-spacing:.25em}.spell-seal{width:95px;height:95px;margin-top:24px}.grimoire .contents a{padding:17px 0}.grimoire .label{font-size:18px}.grimoire .label small{font-size:12px}.chapter-spark{left:-18px}.wand-hint{display:none}}
 @media(prefers-reduced-motion:reduce){.spell-seal:hover,.spell-seal:focus-visible,.spell-seal[aria-pressed=true]{transform:none}.magic-dust{display:none}}
+
+/* Ivory, smoked plum and aged bronze; light is a detail, not the base color. */
+html.magic-home{--paper:#e8e3d9;--ink:#38313a;--muted:#746a70;--line:#aca096;--accent:#80664f;--dust-rgb:142,112,78;color-scheme:light}
+html.magic-home.dark{--paper:#1e1a20;--ink:#e6ded2;--muted:#b3a7ad;--line:#766870;--accent:#b9a48b;--dust-rgb:191,169,143;color-scheme:dark}
+html.magic-home body{background-color:var(--paper);background-image:radial-gradient(ellipse at 50% 12%,#fffaf14d,transparent 65%),radial-gradient(ellipse at 5% 90%,#8a737214,transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath opacity='.07' filter='url(%23p)' d='M0 0h240v240H0z'/%3E%3C/svg%3E");background-blend-mode:multiply}
+html.magic-home.dark body{background-image:radial-gradient(ellipse at 50% 12%,#ad8c9c0d,transparent 65%),radial-gradient(ellipse at 90% 90%,#9b837b08,transparent 65%);background-blend-mode:screen}
+.grimoire h1.brand{text-shadow:none}
+.grimoire .spell-seal{margin:30px auto 35px;filter:drop-shadow(0 0 5px #ad927b22)}
+.spell-seal:hover,.spell-seal:focus-visible{filter:drop-shadow(0 0 10px #ad927b66)}
+.spell-seal[aria-pressed=true]{filter:drop-shadow(0 0 14px #ad927b88)}
+html.spell-lit .grimoire h1.brand{text-shadow:0 0 26px #ad927b33}
+html.spell-lit .grimoire .contents .label{text-shadow:0 0 16px #ad927b22}
+.grimoire .label small{color:var(--muted)}
+.grimoire .roman{color:var(--muted)}

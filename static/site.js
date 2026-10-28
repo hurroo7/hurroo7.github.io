@@ -10,7 +10,6 @@ const grimoire=document.querySelector('.grimoire');
 if(grimoire){
   document.documentElement.classList.add('magic-home');
   const seal=document.querySelector('.spell-seal');
-  const status=document.querySelector('.spell-status');
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const canvas=document.createElement('canvas');
   canvas.className='magic-dust';canvas.setAttribute('aria-hidden','true');
@@ -30,7 +29,7 @@ if(grimoire){
     const step=Math.min((time-last)/16.67||1,2);last=time;
     ctx.clearRect(0,0,w,h);
     if(time-started>260){spark(Math.random()*w,h*Math.random());started=time}
-    const color=document.documentElement.classList.contains('dark')?'180,205,255':'235,193,112';
+    const color=getComputedStyle(document.documentElement).getPropertyValue('--dust-rgb').trim()||'174,151,123';
     for(const p of particles){p.age+=step;p.x+=p.vx*step;p.y+=p.vy*step;
       const alpha=Math.sin(Math.PI*p.age/p.life)*.8;
       ctx.fillStyle=`rgba(${color},${Math.max(0,alpha)})`;ctx.shadowColor=`rgba(${color},.8)`;ctx.shadowBlur=lit?12:6;
@@ -45,7 +44,6 @@ if(grimoire){
   seal.addEventListener('click',()=>{
     lit=!lit;document.documentElement.classList.toggle('spell-lit',lit);seal.setAttribute('aria-pressed',String(lit));
     seal.setAttribute('aria-label',lit?'收起荧光魔法':'施放荧光魔法');
-    status.textContent=lit?'Lumos · 荧光闪烁，故事已经苏醒。':'Nox · 星光归于书页，故事仍在继续。';
     const box=seal.getBoundingClientRect();for(let i=0;i<90;i++)spark(box.x+box.width/2,box.y+box.height/2,true);
     start();
   });
