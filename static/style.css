@@ -5,3 +5,40 @@
 body{background-image:radial-gradient(ellipse at 48% 30%,transparent 30%,rgba(105,83,45,.09) 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath fill='%2382755f' opacity='.19' filter='url(%23grain)' d='M0 0h240v240H0z'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='720'%3E%3Cfilter id='cloud'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.025' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath opacity='.12' filter='url(%23cloud)' d='M0 0h720v720H0z'/%3E%3C/svg%3E");background-blend-mode:multiply;background-attachment:scroll}html.dark body{background-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath opacity='.065' filter='url(%23n)' d='M0 0h240v240H0z'/%3E%3C/svg%3E")}
 
 .cover .subtitle{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:25px;letter-spacing:.09em}
+
+/* A quiet opening, like lifting the cover of a book. */
+@keyframes page-arrive{from{opacity:0;transform:translateY(16px) rotateX(-4deg)}to{opacity:1;transform:translateY(0) rotateX(0)}}
+.cover{perspective:1100px}
+.cover header,.contents li,.cover-footer{animation:page-arrive .8s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 0}
+.cover header{animation-delay:.05s}
+.contents li:nth-child(1){animation-delay:.18s}
+.contents li:nth-child(2){animation-delay:.25s}
+.contents li:nth-child(3){animation-delay:.32s}
+.contents li:nth-child(4){animation-delay:.39s}
+.contents li:nth-child(5){animation-delay:.46s}
+.cover-footer{animation-delay:.53s}
+.contents a{position:relative;isolation:isolate;transition:color .25s ease,transform .35s cubic-bezier(.22,1,.36,1)}
+.contents a::before{content:"";position:absolute;inset:6px -12px;z-index:-1;border-radius:3px;background:var(--accent);opacity:0;transition:opacity .25s ease}
+.contents .roman{transition:color .25s ease,transform .3s ease}
+.contents .dots{transition:opacity .25s ease,border-color .25s ease}
+.contents a:focus-visible{color:var(--accent)}
+.contents a:focus-visible::before{opacity:.055}
+.contents a:focus-visible .roman{transform:translateX(-4px)}
+@media(hover:hover) and (pointer:fine){
+ .contents a:hover{transform:translateX(6px)}
+ .contents a:hover::before{opacity:.055}
+ .contents a:hover .roman{color:var(--accent);transform:translateX(-4px)}
+ .contents a:hover .dots{opacity:1;border-color:var(--accent)}
+ .theme:hover{transform:rotate(18deg);color:var(--accent)}
+}
+.contents a:active{transform:translateX(3px)}
+.theme{transition:transform .4s ease,color .3s ease}
+.theme:active{transform:rotate(35deg) scale(.9)}
+/* Enable color transitions only after the visitor explicitly toggles theme. */
+html.theme-ready,html.theme-ready body{transition:background-color .5s ease,color .5s ease}
+html.theme-ready .cover,html.theme-ready .page,html.theme-ready .page-nav,html.theme-ready .page-footer,html.theme-ready .entry{transition:color .5s ease,border-color .5s ease}
+html.theme-ready .label small,html.theme-ready .meta,html.theme-ready .page-header p,html.theme-ready .entry p,html.theme-ready .archive-row time{transition:color .5s ease}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+ .contents a:hover,.contents a:active,.contents a:focus-visible .roman,.contents a:hover .roman,.theme:hover,.theme:active{transform:none}
+}
