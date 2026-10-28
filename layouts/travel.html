@@ -1,11 +1,12 @@
 {{ define "main" }}
 <header class="travel-header"><h1>{{ .Title }}</h1><button class="map-open" type="button" data-map-open hidden><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><ellipse cx="16" cy="16" rx="5" ry="12"/><path d="M4 16h24M7 8q9 7 18 0m-18 16q9-7 18 0"/></svg>地图</button></header>
+<p class="travel-intro">把走过的城市，收进一张张票根里。<br>这里留下旅途中的照片、见闻，和一些不想忘记的瞬间。</p>
 <div class="travel-tickets">
 {{ range sort (where .Site.RegularPages "Layout" "journey") "Params.ticket_order" }}
-<a class="trip-ticket ticket-{{ .Params.ticket_tone | default "ochre" }}" href="{{ .RelPermalink }}" aria-label="{{ .Title }}{{ if .Params.start }}，{{ .Params.start }} 至 {{ .Params.end }}{{ end }}，查看旅行记录">
+<div class="ticket-sleeve"><a class="trip-ticket ticket-{{ .Params.ticket_tone | default "ochre" }}" href="{{ .RelPermalink }}" aria-label="{{ .Title }}{{ if .Params.start }}，{{ .Params.start }} 至 {{ .Params.end }}{{ end }}，查看旅行记录">
   <div class="ticket-photo">{{ if .Params.cover }}<img src="{{ .Params.cover | relURL }}" alt="{{ .Params.cover_alt | default "旅行照片" }}">{{ else }}<div class="photo-placeholder" role="img" aria-label="{{ .Title }}旅行照片预留位置"></div>{{ end }}</div>
   <div class="ticket-copy"><h2>{{ .Title }}</h2>{{ if .Params.start }}<p class="ticket-dates"><time>{{ .Params.start }}</time><span>—</span><time>{{ .Params.end }}</time></p>{{ end }}</div>
-</a>
+</a></div>
 {{ end }}</div>
 {{ partial "travel-map.html" . }}
 {{ end }}
