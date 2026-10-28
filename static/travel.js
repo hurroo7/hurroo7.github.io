@@ -12,3 +12,19 @@ if(travelMap&&typeof travelMap.showModal==='function'){
   travelMap.querySelectorAll('[data-map-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
  }));
 }
+
+// The paper responds to a fine pointer; links retain normal navigation.
+const ticketMotion=matchMedia('(prefers-reduced-motion: reduce)');
+const ticketPointer=matchMedia('(hover: hover) and (pointer: fine)');
+document.querySelectorAll('.trip-ticket').forEach(ticket=>{
+ let frame=0,latest=null;
+ function reset(){if(frame)cancelAnimationFrame(frame);frame=0;ticket.style.removeProperty('--ticket-x');ticket.style.removeProperty('--ticket-y')}
+ ticket.addEventListener('pointermove',event=>{
+  if(ticketMotion.matches||!ticketPointer.matches||event.pointerType==='touch')return;
+  latest={x:event.clientX,y:event.clientY};
+  if(frame)return;
+  frame=requestAnimationFrame(()=>{frame=0;const box=ticket.getBoundingClientRect();ticket.style.setProperty('--ticket-x',`${((latest.x-box.left)/box.width-.5)*3}deg`);ticket.style.setProperty('--ticket-y',`${-((latest.y-box.top)/box.height-.5)*3}deg`)});
+ },{passive:true});
+ ticket.addEventListener('pointerleave',reset);ticket.addEventListener('blur',reset);
+ ticketMotion.addEventListener('change',reset);
+});
