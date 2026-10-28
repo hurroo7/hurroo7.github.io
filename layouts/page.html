@@ -1,6 +1,7 @@
 {{ define "main" }}
 {{ if eq .Type "archives" }}
 {{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}<a class="archive-row" href="{{ .RelPermalink }}"><time>{{ .Date.Format "2006-01-02" }}</time><span>{{ .Title }}</span></a>{{ end }}
-{{ else if eq .Type "notes" }}
-{{ range (where (where .Site.RegularPages "Section" "posts") "Params.category" "随记").ByDate.Reverse }}<a class="entry" href="{{ .RelPermalink }}"><span class="meta">{{ .Date.Format "2006-01-02" }} · {{ .Params.category }}</span><h2>{{ .Title }} ↗</h2><p>{{ .Description | default (.Summary | plainify) }}</p></a>{{ else }}<p class="empty">这里的故事，正在酝酿。</p>{{ end }}
+{{ else if in (slice "travel" "learning" "notes") .Type }}
+{{ $category := cond (eq .Type "travel") "旅游" (cond (eq .Type "learning") "学习" "随记") }}
+{{ range (where (where .Site.RegularPages "Section" "posts") "Params.category" $category).ByDate.Reverse }}<a class="entry" href="{{ .RelPermalink }}"><span class="meta">{{ .Date.Format "2006-01-02" }} · {{ .Params.category }}</span><h2>{{ .Title }} ↗</h2><p>{{ .Description | default (.Summary | plainify) }}</p></a>{{ else }}<p class="empty">暂无{{ $category }}记录。</p>{{ end }}
 {{ else }}<article class="prose">{{ if eq .Section "posts" }}<p class="meta">{{ .Date.Format "2006-01-02" }} · {{ .Params.category }}{{ if .Params.example }} · 排版示例{{ end }}</p>{{ end }}{{ .Content }}</article>{{ end }}{{ end }}
