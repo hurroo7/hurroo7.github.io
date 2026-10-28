@@ -1,1 +1,17 @@
-{{ define "main" }}<main class="cover"><header><h1 class="brand">HURROO</h1><p class="subtitle">be my self</p><div class="ornament" aria-hidden="true">❦</div></header><nav aria-label="网站目录"><ol class="contents">{{ range .Site.Menus.main }}<li><a href="{{ .URL | relURL }}"><span class="label">{{ .Name }}<small>{{ .Params.english }}</small></span><span class="dots"></span><span class="roman">{{ .Params.roman }}</span></a></li>{{ end }}</ol></nav><footer class="cover-footer"><div class="edition">VOL. I &nbsp; · &nbsp; 第一卷</div><button class="theme" aria-label="切换深色模式">☼</button></footer></main>{{ end }}
+{{ define "main" }}
+<main class="cover grimoire">
+  <div class="spell-atmosphere" aria-hidden="true"><span>✧</span><span>✦</span><span>·</span><span>✧</span><span>·</span><span>✦</span></div>
+  <header>
+    <h1 class="brand">HURROO</h1>
+    <p class="subtitle">be my self</p>
+    <button class="spell-seal" type="button" aria-label="施放荧光魔法" aria-pressed="false">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="seal-orbit" cx="60" cy="60" r="51"/><circle cx="60" cy="60" r="41"/><path d="M60 17 97 81H23Z M60 103 23 39H97Z"/><path class="seal-star" d="M60 35 65 55 85 60 65 65 60 85 55 65 35 60 55 55Z"/></svg>
+      <span class="seal-spark">✧</span>
+    </button>
+    <p class="spell-instruction">轻触星印 · 唤醒此书</p>
+    <p class="spell-status" role="status" aria-live="polite">每一页，藏着一个尚未发生的故事。</p>
+  </header>
+  <nav aria-label="网站目录"><ol class="contents">{{ range .Site.Menus.main }}<li><a href="{{ .URL | relURL }}"><span class="chapter-spark" aria-hidden="true">✦</span><span class="label">{{ .Name }}<small>{{ .Params.english }}</small></span><span class="dots"></span><span class="roman">{{ .Params.roman }}</span></a></li>{{ end }}</ol></nav>
+  <footer class="cover-footer"><div class="edition">VOL. I &nbsp; · &nbsp; 第一卷</div><button class="theme" aria-label="切换深色模式">☼</button><p class="wand-hint">移动光标，留下星尘</p></footer>
+</main>
+{{ end }}
