@@ -19,10 +19,11 @@ if(instrument){
     if(reduced.matches)return;
     while(sparkLayer.childElementCount>120)sparkLayer.firstElementChild.remove();
     const box=core.getBoundingClientRect(),x=box.x+box.width/2,y=box.y+box.height/2;
+    const radius=instrument.getBoundingClientRect().width*.52;
     for(let i=0;i<64;i++){
       const point=document.createElement('span');
       point.className='starburst-point';
-      const angle=Math.random()*Math.PI*2,distance=35+Math.random()*160;
+      const angle=Math.random()*Math.PI*2,distance=radius*(.55+Math.random()*.65);
       const dx=Math.cos(angle)*distance,dy=Math.sin(angle)*distance;
       const size=2+Math.random()*2;
       Object.assign(point.style,{left:`${x}px`,top:`${y}px`,width:`${size}px`,height:`${size}px`});
@@ -31,7 +32,7 @@ if(instrument){
         {transform:'translate(-50%,-50%) scale(.3)',opacity:0},
         {transform:`translate(calc(-50% + ${dx*.12}px),calc(-50% + ${dy*.12}px)) scale(1.2)`,opacity:1,offset:.12},
         {transform:`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(.5)`,opacity:0}
-      ],{duration:1000+Math.random()*1100,easing:'cubic-bezier(.12,.6,.25,1)',fill:'forwards'});
+      ],{duration:1800+Math.random()*1200,easing:'cubic-bezier(.12,.6,.25,1)',fill:'forwards'});
       animation.onfinish=()=>point.remove();
       animation.oncancel=()=>point.remove();
     }
