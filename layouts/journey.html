@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="journey">
+  <a class="journey-back" href="{{ "/travel/" | relURL }}">← 全部旅行</a>
+  <header class="journey-header"><div><p class="journey-city-en">{{ .Params.city_en }}</p><h1>{{ .Title }}</h1></div><div class="journey-dates"><p>{{ .Params.start }} — {{ .Params.end }}</p><span>{{ .Params.days }} 天</span><button class="map-open" data-map-open type="button" hidden>地图 ↗</button></div></header>
+  <figure class="journey-cover">{{ with .Params.cover }}<img src="{{ . | relURL }}" alt="{{ $.Params.cover_alt }}">{{ else }}<div class="photo-placeholder"><span>封面照片待补</span></div>{{ end }}</figure>
+  <div class="journey-body">{{ if .Content }}<div class="prose">{{ .Content }}</div>{{ else }}<p class="journey-empty">这次旅行的文字，还没有写下。</p>{{ end }}</div>
+  <div class="journey-gallery" aria-label="南京旅行相册">{{ range .Params.gallery }}<figure><img src="{{ .src | relURL }}" alt="{{ .alt }}" loading="lazy">{{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>{{ else }}<figure><div class="photo-placeholder"><span>照片待补</span></div></figure><figure><div class="photo-placeholder"><span>照片待补</span></div></figure>{{ end }}</div>
+</article>
+{{ partial "travel-map.html" . }}
+{{ end }}
