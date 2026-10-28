@@ -1,0 +1,39 @@
+{{ define "main" }}
+<svg class="about-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="a-star" viewBox="0 0 48 48"><path d="M24 3c0 15-6 21-21 21 15 0 21 6 21 21 0-15 6-21 21-21C30 24 24 18 24 3Z"/></symbol>
+<symbol id="a-orbit" viewBox="0 0 48 48"><circle cx="24" cy="24" r="8"/><ellipse cx="24" cy="24" rx="22" ry="8" transform="rotate(-35 24 24)"/><path d="M14 5a22 22 0 0 1 20 38M10 38A22 22 0 0 1 14 5"/><circle cx="39" cy="13" r="2"/></symbol>
+<symbol id="a-ball" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><path d="m24 15 9 7-3 11H18l-3-11Zm0 0V4m9 18 10-4M30 33l6 7M18 33l-6 7m3-18L5 18"/></symbol>
+<symbol id="a-game" viewBox="0 0 48 48"><path d="M14 14h20c6 0 9 6 10 18 1 9-5 10-11 1H15C9 42 3 41 4 32c1-12 4-18 10-18Z"/><path d="M11 23h12m-6-6v12m15-7h.1m6 5h.1M20 14l2-5h4"/></symbol>
+<symbol id="a-book" viewBox="0 0 48 48"><path d="M24 12c-6-5-13-5-20-3v29c7-2 14-2 20 3 6-5 13-5 20-3V9c-7-2-14-2-20 3v29M10 17l8 1m-8 6 8 1m12-7 8-1m-8 8 8-1"/></symbol>
+<symbol id="a-arrow" viewBox="0 0 48 48"><path d="M9 39 39 9M10 9h29v29"/></symbol>
+</defs></svg>
+<section class="about-hero" aria-labelledby="about-name">
+  <div class="about-intro">
+    <h1 id="about-name">{{ .Params.name }}</h1>
+    <p class="about-alias">{{ .Params.alias }}</p>
+    <div class="about-bio">{{ .Content }}</div>
+    <a class="about-github" href="https://github.com/hurroo7">GitHub <svg aria-hidden="true"><use href="#a-arrow"/></svg></a>
+  </div>
+  <figure class="academy-scene">
+    <div class="academy-art"><img src="{{ "images/academy-study.webp" | relURL }}" alt="魔法学院的书房：拱窗外是城堡与月亮，室内有悬浮书籍、星象仪，以及电脑、足球和游戏手柄。" width="1536" height="1024" fetchpriority="high"></div>
+    <svg class="scene-orbit" viewBox="0 0 48 48" aria-hidden="true"><use href="#a-orbit"/></svg>
+    <svg class="scene-star" viewBox="0 0 48 48" aria-hidden="true"><use href="#a-star"/></svg>
+  </figure>
+</section>
+<section class="about-education" aria-labelledby="education-title">
+  <div class="education-heading"><svg aria-hidden="true"><use href="#a-book"/></svg><h2 id="education-title">求学之路</h2></div>
+  <div class="education-route">
+    {{ range .Params.education }}<div class="education-stop"><span class="route-dot" aria-hidden="true"></span><h3>{{ .school }}</h3><p>{{ .status }}</p></div>{{ end }}
+  </div>
+</section>
+<section class="about-interests" aria-labelledby="interests-title">
+  <h2 id="interests-title">学习之外</h2>
+  <div class="interest-row"><svg class="interest-icon" aria-hidden="true"><use href="#a-ball"/></svg><div><h3>球场上</h3><p>足球、篮球，都是我喜欢的运动。</p></div></div>
+  <div class="interest-row"><svg class="interest-icon" aria-hidden="true"><use href="#a-game"/></svg><div><h3>游戏里</h3><p>三角洲行动、无畏契约、王者荣耀，<br class="desktop-break">还有各种 Steam 游戏。</p></div></div>
+</section>
+<section class="about-journal" aria-labelledby="journal-title">
+  <svg class="journal-star" aria-hidden="true"><use href="#a-star"/></svg>
+  <div><h2 id="journal-title">把探索留在这里。</h2><p>人工智能学习、项目实践、旅途见闻，<br>以及生活中零散的想法。</p></div>
+  <nav class="journal-links" aria-label="我的记录"><a href="{{ "/posts/" | relURL }}">读文章 <span aria-hidden="true">↗</span></a><a href="{{ "/projects/" | relURL }}">看项目 <span aria-hidden="true">↗</span></a><a href="{{ "/notes/" | relURL }}">翻随记 <span aria-hidden="true">↗</span></a></nav>
+</section>
+{{ end }}
