@@ -25,7 +25,7 @@
         <circle cx="186" cy="341" r="2"/><circle cx="585" cy="571" r="2"/><circle cx="291" cy="91" r="1.5"/><circle cx="707" cy="312" r="2"/><circle cx="357" cy="618" r="1.5"/>
         </g>
       </svg>
-      <button class="atlas-core" type="button" aria-label="重排星图" aria-pressed="false"><span aria-hidden="true">✧</span></button>
+      <button class="atlas-core" type="button" aria-label="旋转星盘：拖动或使用方向键，点击重排，Home 键复位" aria-pressed="false"><span aria-hidden="true">✧</span></button>
       <nav class="atlas-nav" aria-label="网站目录">{{ range .Site.Menus.main }}<a class="atlas-node" href="{{ .URL | relURL }}" data-chapter="{{ .Weight }}"><span class="node-marker" aria-hidden="true"></span><span class="node-copy"><span class="node-index">{{ .Params.roman }}</span><span class="node-name">{{ .Name }}</span><span class="node-en">{{ .Params.english }}</span></span></a>{{ end }}</nav>
     </div>
   </section>
