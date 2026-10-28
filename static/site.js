@@ -11,18 +11,34 @@ if(instrument){
   const fine=matchMedia('(hover: hover) and (pointer: fine)');
   const core=document.querySelector('.atlas-core');
   let queued=0,point=null,drag=null,orbitAngle=0,suppressClick=false;
-  const chart=instrument.querySelector('.celestial-chart');
-  const ray=document.createElementNS('http://www.w3.org/2000/svg','line');
-  ray.classList.add('chapter-ray');ray.setAttribute('x1','400');ray.setAttribute('y1','400');
-  chart.append(ray);
+  const sparkLayer=document.createElement('div');
+  sparkLayer.className='starburst-layer';sparkLayer.setAttribute('aria-hidden','true');
+  document.body.append(sparkLayer);
   function turn(amount){orbitAngle+=amount;instrument.style.setProperty('--orbit-angle',`${orbitAngle}deg`)}
-  function pulse(){
+  function emitLightPoints(){
     if(reduced.matches)return;
-    core.classList.remove('is-pulsing');
-    void core.offsetWidth;
-    core.classList.add('is-pulsing');
+    while(sparkLayer.childElementCount>120)sparkLayer.firstElementChild.remove();
+    const box=core.getBoundingClientRect(),x=box.x+box.width/2,y=box.y+box.height/2;
+    for(let i=0;i<64;i++){
+      const point=document.createElement('span');
+      point.className='starburst-point';
+      const angle=Math.random()*Math.PI*2,distance=35+Math.random()*160;
+      const dx=Math.cos(angle)*distance,dy=Math.sin(angle)*distance;
+      const size=2+Math.random()*2;
+      Object.assign(point.style,{left:`${x}px`,top:`${y}px`,width:`${size}px`,height:`${size}px`});
+      sparkLayer.append(point);
+      const animation=point.animate([
+        {transform:'translate(-50%,-50%) scale(.3)',opacity:0},
+        {transform:`translate(calc(-50% + ${dx*.12}px),calc(-50% + ${dy*.12}px)) scale(1.2)`,opacity:1,offset:.12},
+        {transform:`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(.5)`,opacity:0}
+      ],{duration:1000+Math.random()*1100,easing:'cubic-bezier(.12,.6,.25,1)',fill:'forwards'});
+      animation.onfinish=()=>point.remove();
+      animation.oncancel=()=>point.remove();
+    }
   }
-  core.addEventListener('animationend',()=>core.classList.remove('is-pulsing'));
+  function clearSparks(){sparkLayer.getAnimations({subtree:true}).forEach(animation=>animation.cancel());sparkLayer.replaceChildren()}
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)clearSparks()});
+  reduced.addEventListener('change',()=>{if(reduced.matches)clearSparks()});
   core.addEventListener('pointerdown',event=>{
     if(event.button!==0)return;
     suppressClick=false;drag={id:event.pointerId,x:event.clientX,y:event.clientY,angle:orbitAngle,moved:false};
@@ -57,20 +73,8 @@ if(instrument){
   },{passive:true});
   instrument.addEventListener('pointerleave',resetTilt);
   reduced.addEventListener('change',resetTilt);
-  document.querySelectorAll('.atlas-node').forEach(link=>{
-    const activate=()=>{
-      instrument.dataset.active=link.dataset.chapter;
-      const marker=link.querySelector('.node-marker').getBoundingClientRect();
-      const box=instrument.getBoundingClientRect();
-      ray.setAttribute('x2',String((marker.x+marker.width/2-box.x)/box.width*800));
-      ray.setAttribute('y2',String((marker.y+marker.height/2-box.y)/box.height*800));
-    };
-    const clear=()=>{delete instrument.dataset.active};
-    link.addEventListener('pointerenter',activate);link.addEventListener('focus',activate);
-    link.addEventListener('pointerleave',clear);link.addEventListener('blur',clear);
-  });
   core?.addEventListener('click',()=>{
     if(suppressClick){suppressClick=false;return}
-    const on=instrument.classList.toggle('is-shifted');core.setAttribute('aria-pressed',String(on));turn(36);pulse();
+    const on=instrument.classList.toggle('is-shifted');core.setAttribute('aria-pressed',String(on));turn(36);emitLightPoints();
   });
 }
