@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,900&family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Bodoni+Moda:opsz,wght@6..96,900&family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 :root{--paper:#eeeadd;--ink:#25251e;--muted:#747267;--line:#c3beaf;--accent:#8b402c;color-scheme:light}*{box-sizing:border-box}html{min-height:100%;background:var(--paper)}body{margin:0;color:var(--ink);font-family:'Noto Serif SC',Songti SC,serif;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' opacity='.055' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");min-height:100vh}html.dark{--paper:#20221e;--ink:#f1ecdd;--muted:#c0bcac;--line:#77796b;--accent:#efb18e;color-scheme:dark}body{background-color:var(--paper)}html.dark .dots{opacity:1}html.dark .cover{border-color:var(--line)}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:7px}button{font:inherit;color:inherit}.cover{max-width:690px;margin:auto;padding:49px 46px 25px;min-height:100svh;display:flex;flex-direction:column;text-align:center}.eyebrow,.edition,.folio,.small{font-size:11px;letter-spacing:.2em}.eyebrow{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;color:var(--muted)}h1.brand{font-family:'Bodoni Moda',Didot,'Bodoni MT',Georgia,serif;font-size:clamp(80px,16vw,132px);font-weight:900;letter-spacing:-.065em;line-height:1.08;margin:45px 0 20px}.subtitle{font-size:17px;letter-spacing:.24em;margin:0}.ornament{font-size:23px;color:var(--accent);margin:26px 0 23px}.contents{text-align:left;list-style:none;padding:0;margin:0}.contents a{display:flex;align-items:baseline;gap:14px;padding:16px 0;transition:color .2s,transform .2s}.contents a:hover{color:var(--accent);transform:translateX(5px)}.label{font-size:21px;letter-spacing:.16em}.label small{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:.08em;margin-left:10px;color:var(--muted)}.dots{flex:1;border-bottom:2px dotted var(--muted);opacity:.65}.roman{font-family:Georgia,serif;font-size:17px;min-width:27px;text-align:right}.cover-footer{margin-top:auto;padding-top:48px}.motto{font-size:12px;color:var(--muted);letter-spacing:.13em;margin-bottom:26px}.edition{font-family:Georgia,serif;letter-spacing:.08em}.theme{border:0;background:transparent;cursor:pointer;font-size:25px;margin-top:11px;padding:7px 13px}.page{max-width:760px;margin:auto;padding:35px 38px 45px}.page-nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;font-size:12px;letter-spacing:.12em}.wordmark{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;letter-spacing:.04em}.page-header{text-align:center;padding:66px 0 38px}.page-header h1{font-size:35px;font-weight:500;letter-spacing:.12em;margin:12px 0}.page-header p{color:var(--muted);font-size:13px}.prose{font-size:16px;line-height:2.2}.prose p{margin:0 0 24px}.prose h2{font-size:23px;font-weight:500;margin:36px 0 16px}.prose a,.empty a{border-bottom:1px solid var(--muted)}.entry{display:block;padding:26px 0;border-bottom:1px solid var(--line)}.entry h2{font-size:22px;font-weight:500;margin:10px 0}.entry p,.empty{font-size:14px;line-height:2;color:var(--muted)}.meta{font-size:11px;letter-spacing:.12em;color:var(--muted)}.page-footer{margin-top:65px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted)}.empty{text-align:center;padding:35px 12px 65px}.archive-row{display:flex;gap:25px;padding:20px 0;border-bottom:1px dotted var(--line);align-items:baseline}.archive-row time{font-size:12px;color:var(--muted)}@media(min-width:900px){.cover{border:0}}@media(max-width:480px){.cover{padding:30px 26px 20px}h1.brand{margin-top:55px}.label{font-size:19px}.label small{font-size:12px}.page{padding:25px}.page-header{padding-top:45px}.page-header h1{font-size:29px}.archive-row{gap:15px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* Layered paper grain: fine fibres, soft mottling, and warm edges. */
@@ -42,3 +42,51 @@ html.theme-ready .label small,html.theme-ready .meta,html.theme-ready .page-head
  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
  .contents a:hover,.contents a:active,.contents a:focus-visible .roman,.contents a:hover .roman,.theme:hover,.theme:active{transform:none}
 }
+
+/* An enchanted grimoire: brass, candlelight and ink-blue shadows. */
+html.magic-home{--paper:#141b22;--ink:#eddfbb;--muted:#b9ad90;--line:#6f6248;--accent:#d9ad62;color-scheme:dark}
+html.magic-home.dark{--paper:#080e19;--ink:#f4e5be;--muted:#b7b3b5;--line:#555575;--accent:#a9c5ff}
+html.magic-home body{background-image:radial-gradient(ellipse at 50% 8%,#ad834428,transparent 58%),radial-gradient(ellipse at 8% 80%,#26475538,transparent 55%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath opacity='.08' filter='url(%23g)' d='M0 0h240v240H0z'/%3E%3C/svg%3E");background-blend-mode:screen;background-color:var(--paper)}
+html.magic-home.dark body{background-image:radial-gradient(ellipse at 50% 10%,#697cb42b,transparent 60%),radial-gradient(ellipse at 90% 90%,#46336a40,transparent 65%)}
+.grimoire{max-width:740px;position:relative;padding-top:50px;overflow:clip;border:0!important}
+.magic-kicker{font:10px Georgia,serif;letter-spacing:.34em;color:var(--accent);margin:8px 0 24px;opacity:.8}
+.grimoire h1.brand{font-family:'Cinzel Decorative','Bodoni Moda',Didot,serif;font-weight:700;letter-spacing:-.035em;font-size:clamp(60px,12vw,100px);margin:10px 0 16px;color:var(--ink);text-shadow:0 0 35px #dfbd6133}
+.grimoire .subtitle{font-size:23px;color:var(--muted)}
+.spell-seal{display:block;width:108px;height:108px;position:relative;margin:26px auto 9px;background:transparent;border:0;padding:0;color:var(--accent);cursor:pointer;filter:drop-shadow(0 0 7px #d8b26350);transition:filter .5s ease,transform .5s ease}
+.spell-seal svg{width:100%;height:100%;overflow:visible;fill:none;stroke:currentColor;stroke-width:.65}
+.spell-seal .seal-orbit{stroke-dasharray:2 7;transform-origin:60px 60px;animation:orbit 45s linear infinite}
+.seal-star{fill:currentColor;fill-opacity:.15;stroke-width:1}
+.seal-spark{position:absolute;inset:0;display:grid;place-items:center;font-size:29px;animation:candle-breathe 3s ease-in-out infinite}
+.spell-seal:hover,.spell-seal:focus-visible{filter:drop-shadow(0 0 17px var(--accent));transform:scale(1.07)}
+.spell-seal[aria-pressed=true]{filter:drop-shadow(0 0 22px var(--accent));transform:rotate(30deg)}
+.spell-instruction{font-size:11px;letter-spacing:.18em;color:var(--accent);opacity:.8}
+.spell-status{font-size:12px;line-height:1.8;min-height:22px;color:var(--muted);margin:17px 0 25px;letter-spacing:.08em}
+.grimoire .contents a{padding:19px 0;gap:12px}
+.grimoire .contents a::before{background:linear-gradient(90deg,transparent,var(--accent),transparent);inset:0 -12px;filter:blur(7px)}
+.grimoire .contents a:hover::before,.grimoire .contents a:focus-visible::before{opacity:.1}
+.grimoire .label{font-size:20px;letter-spacing:.2em}
+.grimoire .label small{font-size:13px;letter-spacing:.1em}
+.grimoire .dots{border-bottom-width:1px;opacity:.7}
+.chapter-spark{position:absolute;left:-20px;top:50%;font-size:11px;color:var(--accent);opacity:0;transform:translateY(-50%) scale(0);transition:opacity .3s,transform .4s}
+.contents a:hover .chapter-spark,.contents a:focus-visible .chapter-spark{opacity:1;transform:translateY(-50%) scale(1);text-shadow:0 0 10px var(--accent)}
+.grimoire .roman{color:var(--accent);font-size:14px}
+.grimoire .cover-footer{padding-top:38px}
+.grimoire .edition{font-size:10px;letter-spacing:.18em;color:var(--muted)}
+.grimoire .theme{color:var(--accent);font-size:24px}
+.wand-hint{font-size:10px;color:var(--muted);letter-spacing:.15em;opacity:.65;margin:8px 0}
+.magic-dust{position:fixed;inset:0;z-index:3;pointer-events:none;width:100%;height:100%}
+.spell-atmosphere{position:absolute;inset:0;pointer-events:none;z-index:-1;color:var(--accent)}
+.spell-atmosphere span{position:absolute;animation:float-rune 9s ease-in-out infinite;font-family:Georgia,serif;font-size:18px;opacity:.2}
+.spell-atmosphere span:nth-child(1){top:11%;left:8%}
+.spell-atmosphere span:nth-child(2){top:30%;right:5%;animation-delay:-3s;font-size:11px}
+.spell-atmosphere span:nth-child(3){top:65%;left:4%;animation-delay:-5s}
+.spell-atmosphere span:nth-child(4){top:80%;right:8%;animation-delay:-2s}
+.spell-atmosphere span:nth-child(5){top:40%;left:16%;animation-delay:-6s}
+.spell-atmosphere span:nth-child(6){top:4%;right:17%;animation-delay:-4s;font-size:8px}
+html.spell-lit .grimoire h1.brand{text-shadow:0 0 18px #e6c37988,0 0 65px #d6ae6055}
+html.spell-lit .grimoire .contents .label{ text-shadow:0 0 15px #e6c37944 }
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes candle-breathe{50%{opacity:.5;transform:scale(.8)}}
+@keyframes float-rune{50%{transform:translateY(-18px) rotate(20deg);opacity:.55}}
+@media(max-width:480px){.grimoire{padding:34px 30px 22px}.grimoire h1.brand{font-size:clamp(48px,15vw,70px);margin-top:20px}.magic-kicker{font-size:8px;letter-spacing:.25em}.spell-seal{width:95px;height:95px;margin-top:24px}.grimoire .contents a{padding:17px 0}.grimoire .label{font-size:18px}.grimoire .label small{font-size:12px}.chapter-spark{left:-18px}.wand-hint{display:none}}
+@media(prefers-reduced-motion:reduce){.spell-seal:hover,.spell-seal:focus-visible,.spell-seal[aria-pressed=true]{transform:none}.magic-dust{display:none}}
