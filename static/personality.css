@@ -87,3 +87,84 @@ body:has(.journey-atlas){overflow-x:clip}@media(max-width:650px){.journey-atlas:
 .about-owl-seal{width:88px;height:110px;transform:rotate(-5deg)}@media(max-width:900px){.about-owl-seal{width:72px;height:90px}}@media(max-width:650px){.about-owl-seal{width:76px;height:95px}}
 
 .about-owl-seal{width:98px;height:123px;transform:rotate(-4deg);color:var(--brass)}@media(max-width:900px){.about-owl-seal{width:80px;height:100px}}@media(max-width:650px){.about-owl-seal{width:84px;height:105px}}
+
+/* Chapter links sit above each page's own composition. */
+.page-nav {
+  gap: 16px 28px;
+  flex-wrap: wrap;
+}
+
+.page-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-menu a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--muted);
+  text-underline-offset: .42em;
+}
+
+.page-menu a:hover,
+.page-menu a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+
+.prose,
+.entry,
+.archive-row {
+  overflow-wrap: anywhere;
+}
+
+.prose a {
+  border: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: .24em;
+}
+
+.prose pre {
+  overflow-wrap: normal;
+}
+
+.archive-row time {
+  flex: none;
+}
+
+.theme {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+@media (max-width: 650px) {
+  .page-nav {
+    gap: 4px 24px;
+    padding-bottom: 12px;
+  }
+
+  .page-menu {
+    gap: 0 clamp(10px, 3vw, 18px);
+  }
+
+  .chapter-emblem {
+    right: 10px;
+  }
+
+  .about-heading h1 {
+    font-size: clamp(76px, 25vw, 104px);
+  }
+}
+
+@media (max-width: 370px) {
+  .atlas-node:nth-child(2) { left: 45%; }
+  .atlas-node:nth-child(3) { left: 46%; }
+}

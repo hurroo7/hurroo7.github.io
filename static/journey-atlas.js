@@ -1,7 +1,7 @@
 (() => {
  const atlas=document.querySelector('.journey-atlas');if(!atlas)return;
  const svg=atlas.querySelector('.journey-chart-svg'),year=document.querySelector('.atlas-year');
- const trips=[...atlas.querySelectorAll('.atlas-trip')],markers=[...atlas.querySelectorAll('.atlas-destination')],tabs=[...atlas.querySelectorAll('.atlas-trip-tabs button')];
+ const trips=[...atlas.querySelectorAll('.atlas-trip')],markers=[...atlas.querySelectorAll('.atlas-destination')];
  const panel=atlas.querySelector('.atlas-trip-panel'),chart=atlas.querySelector('.atlas-chart');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  let hoverTimer=0;
@@ -17,27 +17,58 @@
   left=Math.max(18,Math.min(c.width-w-18,left));
   panel.style.left=`${left}px`;panel.style.top=`${Math.max(65,Math.min(c.height-h-28,y-70))}px`;
  }
- function closePopup(){panel.hidden=true;markers.forEach(m=>{m.classList.remove('is-selected');m.setAttribute('aria-expanded','false')})}
+ function closePopup(restoreFocus=false){
+  clearTimeout(hoverTimer);
+  if(panel.hidden)return;
+  const marker=markers.find(m=>m.dataset.trip===selected);
+  selected='';
+  panel.hidden=true;
+  marker?.classList.remove('is-selected');
+  marker?.setAttribute('aria-expanded','false');
+  if(restoreFocus)marker?.focus({preventScroll:true});
+ }
  function choose(id,animate=true){
   selected=id;trips.forEach(t=>t.hidden=t.dataset.trip!==id);
   markers.forEach(m=>{m.classList.toggle('is-selected',m.dataset.trip===id);m.setAttribute('aria-expanded',String(m.dataset.trip===id))});
   panel.hidden=!id;placePopup();
-  atlas.querySelector('.atlas-selection-status').textContent=id?`已选择${trips.find(t=>t.dataset.trip===id)?.querySelector('h2').textContent||''}旅行票根`:'';
   if(id&&animate&&!reduced.matches){panel.getAnimations().forEach(a=>a.cancel());panel.animate([{opacity:0,transform:'translateY(8px) rotate(-2deg)'},{opacity:1,transform:'translateY(0) rotate(0)'}],{duration:350,easing:'cubic-bezier(.2,.7,.2,1)'});}
  }
  function filter(){
   const permitted=trips.filter(t=>year.value==='all'||t.dataset.year===year.value);
   markers.forEach(m=>{m.style.display=year.value==='all'||m.dataset.year===year.value?'':'none'});
   document.querySelectorAll('.journal-year').forEach(g=>g.hidden=year.value!=='all'&&g.dataset.year!==year.value);
-  if(selected&&!permitted.some(t=>t.dataset.trip===selected)){selected='';closePopup()}
+  if(selected&&!permitted.some(t=>t.dataset.trip===selected))closePopup();
  }
- markers.forEach(m=>{m.setAttribute('aria-expanded','false');m.addEventListener('pointerenter',e=>{clearTimeout(hoverTimer);if(e.pointerType==='mouse'&&matchMedia('(hover: hover) and (min-width: 701px)').matches)hoverTimer=setTimeout(()=>choose(m.dataset.trip),220)});m.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));});
- panel.querySelector('.atlas-popup-close').addEventListener('click',()=>{const marker=markers.find(m=>m.dataset.trip===selected);closePopup();marker?.focus({preventScroll:true})});
- chart.addEventListener('keydown',e=>{if(e.key==='Escape'){closePopup();markers.find(m=>m.dataset.trip===selected)?.focus({preventScroll:true})}});
+ markers.forEach(marker=>{
+  marker.setAttribute('aria-expanded','false');
+  marker.setAttribute('aria-controls',panel.id);
+  marker.addEventListener('pointerenter',event=>{
+   clearTimeout(hoverTimer);
+   if(panel.contains(document.activeElement))return;
+   if(event.pointerType==='mouse'&&matchMedia('(hover: hover) and (min-width: 701px)').matches){
+    hoverTimer=setTimeout(()=>choose(marker.dataset.trip),220);
+   }
+  });
+  marker.addEventListener('pointerleave',()=>clearTimeout(hoverTimer));
+  marker.addEventListener('click',event=>{
+   if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+   event.preventDefault();
+   clearTimeout(hoverTimer);
+   if(Date.now()<ignoreClickUntil)return;
+   if(region==='world')setRegion('china');
+   choose(marker.dataset.trip);
+   if(event.detail===0)panel.querySelector('.atlas-trip:not([hidden]) a')?.focus({preventScroll:true});
+  });
+ });
+ panel.querySelector('.atlas-popup-close').addEventListener('click',()=>closePopup(true));
+ chart.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!panel.hidden){
+   event.preventDefault();
+   closePopup(true);
+  }
+ });
  window.addEventListener('resize',placePopup);
- markers.forEach(m=>m.addEventListener('click',event=>{event.preventDefault();clearTimeout(hoverTimer);if(Date.now()<ignoreClickUntil)return;if(region==='world')setRegion('china');choose(m.dataset.trip)}));
- tabs.forEach(t=>t.addEventListener('click',()=>{if(region==='world')setRegion('china');choose(t.dataset.trip)}));
- year.addEventListener('change',filter);
+ year.addEventListener('change',()=>{clearTimeout(hoverTimer);filter()});
  atlas.querySelectorAll('[data-atlas-region]').forEach(b=>b.addEventListener('click',()=>setRegion(b.dataset.atlasRegion)));
  atlas.querySelectorAll('[data-atlas-zoom]').forEach(b=>b.addEventListener('click',()=>{const factor=b.dataset.atlasZoom==='in'?.8:1.25;const w=Math.min(1000,Math.max(70,box[2]*factor)),h=w*box[3]/box[2];box=[box[0]+(box[2]-w)/2,box[1]+(box[3]-h)/2,w,h];updateBox()}));
  atlas.querySelector('[data-atlas-reset]').addEventListener('click',()=>setRegion(region));
