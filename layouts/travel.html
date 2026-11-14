@@ -3,7 +3,7 @@
 <section class="journey-atlas" aria-label="魔法旅行地图">
 <div class="atlas-chart">
 <div class="atlas-chart-controls" hidden><button type="button" data-atlas-region="china" aria-pressed="true">中国</button><button type="button" data-atlas-region="world" aria-pressed="false">世界</button><span></span><button type="button" data-atlas-zoom="in" aria-label="放大地图">＋</button><button type="button" data-atlas-zoom="out" aria-label="缩小地图">−</button><button type="button" data-atlas-reset aria-label="复位地图">⤾</button></div>
-<svg class="journey-chart-svg" viewBox="690 85 210 150" role="group" aria-label="旅行足迹地图，选择南京或北京查看票根">
+<svg class="journey-chart-svg" viewBox="690 85 210 150" role="group" aria-label="旅行足迹地图">
 <defs><pattern id="atlas-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20"/></pattern><pattern id="atlas-hatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path d="M0 0v3"/></pattern></defs>
 <rect class="chart-water" width="1000" height="500"/><rect width="1000" height="500" fill="url(#atlas-grid)"/>
 {{ partial "travel-land.html" . }}
@@ -13,9 +13,9 @@
 {{ end }}</svg>
 <div class="chart-compass" aria-hidden="true">{{ partial "academy-art.html" "compass" }}</div>
 <a class="chart-credit" href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth</a>
-<aside class="atlas-trip-panel" aria-label="选中的旅行票根" hidden><button class="atlas-popup-close" type="button" aria-label="关闭旅行票根">×</button>
+<aside id="atlas-trip-panel" class="atlas-trip-panel" aria-label="选中的旅行票根" hidden><button class="atlas-popup-close" type="button" aria-label="关闭旅行票根">×</button>
 <div class="atlas-selected-tickets">{{ range sort (where .Site.RegularPages "Layout" "journey") "Params.ticket_order" }}<div class="atlas-trip" data-trip="{{ .RelPermalink }}" data-year="{{ .Date.Format "2006" }}">{{ partial "travel-ticket.html" . }}</div>{{ end }}</div>
-<p class="atlas-selection-status" aria-live="polite"></p>
+
 </aside></div></section>
 <section class="travel-journal" aria-labelledby="journal-title"><header class="journal-heading"><h2 id="journal-title">旅行记录</h2></header>
 {{ range ((where .Site.RegularPages "Layout" "journey").GroupByDate "2006") }}<section class="journal-year" data-year="{{ .Key }}" aria-label="{{ .Key }} 年旅行"><h3>{{ .Key }}</h3><div>{{ range .Pages.ByDate.Reverse }}<a class="journal-row" href="{{ .RelPermalink }}"><div class="journal-photo">{{ if .Params.cover }}<img src="{{ .Params.cover | relURL }}" alt="{{ .Params.cover_alt | default .Title }}" loading="lazy">{{ else }}<svg viewBox="0 0 64 64" fill="none" aria-hidden="true">{{ partial "city-landmark.html" .Params.city_en }}</svg>{{ end }}</div><div class="journal-row-copy"><h4>{{ .Title }}</h4><p><time>{{ .Params.start }}</time> — <time>{{ .Params.end }}</time></p></div><span class="journal-days">{{ .Params.days }} 天</span></a>{{ end }}</div></section>{{ end }}
